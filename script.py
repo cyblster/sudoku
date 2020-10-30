@@ -33,7 +33,7 @@ class Sudoku:
         
     def shuffle(self, iterCount = 100):
         shuffleFunc = ["self.swap_rows_small()", "self.swap_rows_big()", "self.swap_cols_small()", "self.swap_cols_big()"]
-        for i in range(iterCount):
+        for _ in range(iterCount):
             eval(choice(shuffleFunc))
 
             
