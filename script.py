@@ -5,7 +5,8 @@ class Sudoku:
         self.grid = [[(col * 3 + col // 3 + row) % 9 + 1 for row in range(9)] for col in range(9)]
 
     def show(self):
-        print(*self.grid, sep = "\n")
+        for row in self.grid:
+            print(*row)
 
     def transp(self):
         self.grid = list(map(list, zip(*self.grid)))
