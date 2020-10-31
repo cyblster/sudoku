@@ -11,33 +11,31 @@ class Sudoku:
     def transp(self):
         self.grid = list(map(list, zip(*self.grid)))
 
-    def swap_rows_small(self):
+    def swapRowsSmall(self):
         squareRow = choice([0, 3, 6]);
         rows = [0, 1, 2]; rows.pop(randint(1, 3) - 1)
         rowFirst, rowSecond = rows
         self.grid[squareRow + rowFirst], self.grid[squareRow + rowSecond] = self.grid[squareRow + rowSecond], self.grid[squareRow + rowFirst]
 
-    def swap_rows_big(self):
+    def swapRowsBig(self):
         squareRow = [0, 3, 6]; squareRow.pop(randint(1, 3) - 1)
         squareRowFirst, squareRowSecond = squareRow
         self.grid[squareRowFirst:squareRowFirst + 3], self.grid[squareRowSecond:squareRowSecond + 3] = self.grid[squareRowSecond:squareRowSecond + 3], self.grid[squareRowFirst:squareRowFirst + 3]
 
-    def swap_cols_small(self):
+    def swapColsSmall(self):
         Sudoku.transp(self)
-        Sudoku.swap_rows_small(self)
+        Sudoku.swapRowsSmall(self)
         Sudoku.transp(self)    
 
-    def swap_cols_big(self):
+    def swapColsBig(self):
         Sudoku.transp(self)
-        Sudoku.swap_rows_big(self)
+        Sudoku.swapRowsBig(self)
         Sudoku.transp(self)
 
-    def shuffle(self, iterCount = 100):
-        shuffleFunc = ["self.swap_rows_small()", "self.swap_rows_big()", "self.swap_cols_small()", "self.swap_cols_big()"]
+    def shuffle(self, iterCount = 10000):
+        shuffleFunc = ["self.swapRowsSmall()", "self.swapRowsBig()", "self.swapColsSmall()", "self.swapColsBig()"]
         for _ in range(iterCount):
             eval(choice(shuffleFunc))
-
-            
         
 a = Sudoku()
 a.shuffle()
