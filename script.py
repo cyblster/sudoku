@@ -1,5 +1,6 @@
 from random import randint, choice
 
+
 class Sudoku:
     def __init__(self):
         self.grid = [[(col * 3 + col // 3 + row) % 9 + 1 for row in range(9)] for col in range(9)]
